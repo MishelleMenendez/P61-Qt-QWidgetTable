@@ -3,6 +3,8 @@
 
 #include <QDialog>
 
+#include "persona.h"
+
 namespace Ui {
 class PersonaDialog;
 }
@@ -14,18 +16,15 @@ class PersonaDialog : public QDialog
 public:
     explicit PersonaDialog(QWidget *parent = nullptr);
     ~PersonaDialog();
+    Persona *persona() const;
 
-    QString nombre();
-    QString apellido();
-    QString telefono();
-    QString email();
 private slots:
     void on_buttonBox_accepted();
-
     void on_buttonBox_rejected();
 
 private:
     Ui::PersonaDialog *ui;
+    Persona *m_persona;
 };
 
 #endif // PERSONADIALOG_H

@@ -25,6 +25,11 @@ Principal::~Principal()
     delete ui;
 }
 
+void Principal::on_btnEditar_clicked()
+{
+    PersonaDialog pd (this);
+    pd.setWindowTitle("Editar contacto");
+}
 
 void Principal::on_btnAgregar_clicked()
 {
@@ -36,21 +41,17 @@ void Principal::on_btnAgregar_clicked()
     if (res == QDialog::Rejected){
         return;
     }
-    // Recuperar los datos ingresados
-    QString nombre = pd.nombre();
-    QString apellido = pd.apellido();
-    QString telefono = pd.telefono();
-    QString email = pd.email();
+    // Recuperar el objeto del cuadro de dialogo
+    Persona *p = pd.persona();
     //Agregar a la tabla
     int fila = ui->tblLista->rowCount();
     ui->tblLista->insertRow(fila);
-    ui->tblLista->setItem(fila, NOMBRE, new QTableWidgetItem(nombre));
-    ui->tblLista->setItem(fila, APELLIDO, new QTableWidgetItem(apellido));
-    ui->tblLista->setItem(fila, TELEFONO, new QTableWidgetItem(telefono));
-    ui->tblLista->setItem(fila, EMAIL, new QTableWidgetItem(email));
+    ui->tblLista->setItem(fila, NOMBRE, new QTableWidgetItem(p->nombre()));
+    ui->tblLista->setItem(fila, APELLIDO, new QTableWidgetItem(p->apellido()));
+    ui->tblLista->setItem(fila, TELEFONO, new QTableWidgetItem(p->telefono()));
+    ui->tblLista->setItem(fila, EMAIL, new QTableWidgetItem(p->email()));
 
 }
-
 
 void Principal::on_btnGuardar_clicked()
 {
@@ -105,4 +106,3 @@ void Principal::cargarContactos()
         archivo.close();
     }
 }
-

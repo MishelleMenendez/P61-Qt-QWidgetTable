@@ -6,6 +6,7 @@
 #include <QMessageBox>
 
 #include "personadialog.h"
+#include "persona.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Principal; }
@@ -21,8 +22,8 @@ public:
 
 private slots:
     void on_btnAgregar_clicked();
-
     void on_btnGuardar_clicked();
+    void on_btnEditar_clicked();
 
 private:
     Ui::Principal *ui;
