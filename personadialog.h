@@ -18,9 +18,11 @@ public:
     ~PersonaDialog();
 
     Persona *persona() const;
+    void set_datos(QString nom, QString ape, QString tel, QString eml);
 
 private slots:
     void on_buttonBox_accepted();
+
     void on_buttonBox_rejected();
 
 private:

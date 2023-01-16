@@ -22,7 +22,7 @@ void PersonaDialog::on_buttonBox_accepted()
     QString email = ui->inEmail->text();
 
     if( !v_telf(telefono) || !v_email(email)||!v_nomap(nombre)||!v_nomap(apellido)){
-        QMessageBox::information(this, "Error", "Los Datos son Erróneos o estan incompletos..!");
+        QMessageBox::information(this, "Error !!", "Los datos ingresados son incorrectos o estan incompletos..!");
         return;
     }
 
@@ -64,6 +64,13 @@ bool PersonaDialog::v_email(QString email)
       return eml.exactMatch(email);
 }
 
+void PersonaDialog::set_datos(QString nom, QString ap, QString telf, QString eml)
+{
+    ui->inNombre->setText(nom);
+    ui->inApellido->setText(ap);
+    ui->inTelefono->setText(telf);
+    ui->inEmail->setText(eml);
+}
 
 Persona *PersonaDialog::persona() const
 {

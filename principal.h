@@ -22,8 +22,12 @@ public:
 
 private slots:
     void on_btnAgregar_clicked();
+
     void on_btnGuardar_clicked();
+
     void on_btnEditar_clicked();
+
+    void on_btnEliminar_clicked();
 
 private:
     Ui::Principal *ui;

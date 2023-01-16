@@ -33,6 +33,13 @@
       </spacer>
      </item>
      <item>
+      <widget class="QPushButton" name="btnEliminar">
+       <property name="text">
+        <string>Eliminar</string>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QPushButton" name="btnEditar">
        <property name="text">
         <string>Editar</string>

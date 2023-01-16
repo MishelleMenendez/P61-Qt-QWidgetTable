@@ -25,10 +25,65 @@ Principal::~Principal()
     delete ui;
 }
 
+void Principal::on_btnEliminar_clicked()
+{
+    QList<QModelIndex>elm = ui->tblLista->selectionModel()->selectedRows();
+    if(elm.isEmpty()){
+        QMessageBox::information(this,"Advertencia!","Seleccione una Fila..!");
+        return;
+    }
+
+    QList<int> list;
+    QList<int>::iterator lis;
+    QList<QModelIndex>::iterator el;
+
+    for (auto &&el : elm){
+        list.append(el.row());
+    }
+
+    for (auto &&lis : list){
+        ui->tblLista->removeRow(lis);
+    }
+}
+
 void Principal::on_btnEditar_clicked()
 {
-    PersonaDialog pd (this);
-    pd.setWindowTitle("Editar contacto");
+    int sel=0;
+    QList<QModelIndex>seleccion = ui->tblLista->selectionModel()->selectedRows();
+
+    if(seleccion.isEmpty()){
+        QMessageBox::information(this,"Advertencia!","Seleccione una Fila..!");
+        return;
+    }
+    for (auto &&el : seleccion){
+        sel++;
+    }
+    if(sel!=1){
+        QMessageBox::information(this,"ADVERTENCIA!","Seleccione una sola fila..!");
+        return;
+    }
+    int row = ui->tblLista->currentRow();
+
+    QTableWidgetItem *nombre = ui->tblLista->item(row, NOMBRE);
+    QTableWidgetItem *apellido = ui->tblLista->item(row, APELLIDO);
+    QTableWidgetItem *telefono = ui->tblLista->item(row, TELEFONO);
+    QTableWidgetItem *email = ui->tblLista->item(row, EMAIL);
+
+    PersonaDialog pd(this);
+    pd.setWindowTitle("Agregar contacto");
+
+    pd.set_datos(nombre->text(), apellido->text(), telefono->text(), email->text());
+
+    int res = pd.exec();
+    if (res == QDialog::Rejected){
+        return;
+    }
+    Persona *p = pd.persona();
+
+    ui->tblLista->setItem(row, NOMBRE, new QTableWidgetItem(p->nombre()));
+    ui->tblLista->setItem(row, APELLIDO, new QTableWidgetItem(p->apellido()));
+    ui->tblLista->setItem(row, TELEFONO, new QTableWidgetItem(p->telefono()));
+    ui->tblLista->setItem(row, EMAIL, new QTableWidgetItem(p->email()));
 }
 
 void Principal::on_btnAgregar_clicked()
