@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Recursos/agenda.png</file>
+        <file>Recursos/añadir.png</file>
+        <file>Recursos/borrar.png</file>
+        <file>Recursos/cancel.png</file>
+        <file>Recursos/editar.png</file>
+        <file>Recursos/guardar.png</file>
+        <file>Recursos/ok.png</file>
+    </qresource>
+</RCC>
